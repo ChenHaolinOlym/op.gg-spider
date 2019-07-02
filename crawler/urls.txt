@@ -1,13 +1,16 @@
 # champion 
-1. The current version: line 519, it's a text
+1. The current version: line 519, it's a text   # read the source code and find it
 2. Champion Rankings
 https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&   for ban rate
 https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&   for win rate and pick rate
+   # ctrl + shift + F12 -> find the two links -> open but can't find data with position -> try query but doesn't work -> open source code -> find there's javascript -> find out they just there
+
 ban, win, pick, are all in the source code
 
 # statistics
 ## game stats by champion
 https://www.op.gg/statistics/ajax2/champion/type={type}&League={league}&period={period}&mapId={mapId}&queue={queue}
+    # ctrl + shift + f12 find the query link -> press different button to discover different options and what they mean
 type: win: Win rate, lose: Low win ratio, picked: Pick ratio per game, banned: Ban ratio per game
 league: all, iron, bronze, silver, gold, platinum, diamond, master, grandmaster, challenger
 period: month, week, today
@@ -15,15 +18,13 @@ mapId: 1: Summoner's Rift, 10:The Twisted Treeline, 12:Howling Abyss
 queue: ranked, normal: Normal Queue, aram: ARAM
 
 ## game stats by tier
-1. the graph in the bottom
+1. the graph in the bottom # can't find source code -> empty graph -> load by ajax -> ctrl+shift+F12 -> find the query link -> done
 https://www.op.gg/statistics/ajax2/tier/type={type}&period={period}&mapId={mapId}&queue={queue}
 type: kda, cs, gold, ward
 period: month, week, today
 mapId: 1: Summoner's Rift, 10:The Twisted Treeline, 12:Howling Abyss
 queue: ranked, normal: Normal Queue, aram: ARAM
-2. detailed league statics on the right: in static HTML
+2. detailed league statics on the right: in static HTML    # just find in the source code
 
 # version 
-
-
 
