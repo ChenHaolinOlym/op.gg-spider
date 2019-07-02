@@ -1,0 +1,6 @@
+1. Crawl the op.gg data of Korean server: Chanpion, Stats
+2. Store the data into database like MySql/Sqlite/MongoDB
+3. Set a schedule/timer to automatically crawl data every day
+4. Use the data and bokeh to plot it.
+5. Use bokeh to make a query page
+6. Pulish the page on my own website using bokeh
