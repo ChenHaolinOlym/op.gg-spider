@@ -1,21 +1,27 @@
 # champion 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
+1. The current version: line 519, it's a text
+2. Champion Rankings
+https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&   for ban rate
+https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&   for win rate and pick rate
+ban, win, pick, are all in the source code
 
+# statistics
+## game stats by champion
+https://www.op.gg/statistics/ajax2/champion/type={type}&League={league}&period={period}&mapId={mapId}&queue={queue}
+type: win: Win rate, lose: Low win ratio, picked: Pick ratio per game, banned: Ban ratio per game
+league: all, iron, bronze, silver, gold, platinum, diamond, master, grandmaster, challenger
+period: month, week, today
+mapId: 1: Summoner's Rift, 10:The Twisted Treeline, 12:Howling Abyss
+queue: ranked, normal: Normal Queue, aram: ARAM
 
-
-# stats
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-
+## game stats by tier
+1. the graph in the bottom
+https://www.op.gg/statistics/ajax2/tier/type={type}&period={period}&mapId={mapId}&queue={queue}
+type: kda, cs, gold, ward
+period: month, week, today
+mapId: 1: Summoner's Rift, 10:The Twisted Treeline, 12:Howling Abyss
+queue: ranked, normal: Normal Queue, aram: ARAM
+2. detailed league statics on the right: in static HTML
 
 # version 
 
