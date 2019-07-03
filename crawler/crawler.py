@@ -1,6 +1,6 @@
 import requests
 import json
-
+from bs4 import BeautifulSoup
 
 def getChamRank():
     url1="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&"
@@ -10,26 +10,27 @@ def getChamRank():
     sdw1=r.content.decode('utf-8')
     r=requests.get(url2,headers=header)
     sdw2=r.content.decode('utf-8')
-    print(sdw1)    
-    print(sdw2)    
     
 def getChamStat(type, league, period, mapId, queue):
     url="https://www.op.gg/statistics/ajax2/champion/type={}&League={}&period={}&mapId={}&queue={}".format(type, league, period, mapId, queue)
     header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
     r=requests.get(url,headers=header)
     sdw=r.content.decode('utf-8')
-    print(sdw)    
+    soup = BeautifulSoup(sdw, 'html.parser')
+    for tr in soup.table.tbody:
+        for td in tr:
+            for div in td:
+                print(div)
     
 def getTierStat(type, period, mapId, queue):
     url="https://www.op.gg/statistics/ajax2/tier/type={}&period={}&mapId={}&queue={}".format(type, period, mapId, queue)
     header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
     r=requests.get(url,headers=header)
     sdw=r.content.decode('utf-8')
-    print(sdw)
 
 
 
 
-getChamRank()
+# getChamRank()
 getChamStat('win', 'all', 'month', '1', 'ranked')
-getTierStat('kda', 'month', '1', 'ranked')
+# getTierStat('kda', 'month', '1', 'ranked')
