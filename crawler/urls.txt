@@ -1,18 +1,5 @@
 # champion 
-
-
-
-
-
-
-
 1. The current version: line 519, it's a text   # read the source code and find it
-
-
-
-
-
-
 2. Champion Rankings
 https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&   for ban rate
 https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&   for win rate and pick rate
