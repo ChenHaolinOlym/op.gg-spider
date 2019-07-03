@@ -17,10 +17,26 @@ def getChamStat(type, league, period, mapId, queue):
     r=requests.get(url,headers=header)
     sdw=r.content.decode('utf-8')
     soup = BeautifulSoup(sdw, 'html.parser')
-    for tr in soup.table.tbody:
-        for td in tr:
-            for div in td:
-                print(div)
+    for idx, tr in enumerate(soup.find_all('tr')):
+        if idx == 0:
+            ths = tr.find_all('th')
+            print(ths[0].string)
+            print(ths[1].string)
+            print(ths[2].string)
+            print(ths[3].string)
+            print(ths[4].string)
+            print(ths[5].string)
+            print(ths[6].string)
+        if idx != 0:
+            tds = tr.find_all('td')
+            print(tds[0].contents[0].string)
+            print(tds[2].contents[1].string)
+            print(tds[3].contents[3].string)
+            print(tds[4].contents[0].string.strip())
+            print(tds[5].contents[1].string)
+            print(tds[6].contents[3].string)
+            print(tds[7].contents[3].string)
+            
     
 def getTierStat(type, period, mapId, queue):
     url="https://www.op.gg/statistics/ajax2/tier/type={}&period={}&mapId={}&queue={}".format(type, period, mapId, queue)
@@ -31,6 +47,6 @@ def getTierStat(type, period, mapId, queue):
 
 
 
-# getChamRank()
+getChamRank()
 getChamStat('win', 'all', 'month', '1', 'ranked')
-# getTierStat('kda', 'month', '1', 'ranked')
+getTierStat('kda', 'month', '1', 'ranked')
