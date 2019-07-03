@@ -1,5 +1,6 @@
 # issue: When certain have no data, deal with the error code
 # issue: Crawl the champion page
+# issue: find out the champion id and the correspond champion on op.gg
 
 import requests
 import json
