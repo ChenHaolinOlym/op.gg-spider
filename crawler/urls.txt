@@ -28,3 +28,16 @@ queue: ranked, normal: Normal Queue, aram: ARAM
 
 # version 
 
+
+
+# Champions own page
+1. items
+https://www.op.gg/champion/{champion name}/statistics/top/item?
+2. skills
+https://www.op.gg/champion/{champion name}/statistics/top/skill
+in source code
+3. runes
+
+4. trend
+5. counters
+
