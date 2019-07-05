@@ -8,15 +8,51 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import csv
 
-def getChamRank():
-    url1="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&"
-    url2="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&"
-    header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-    r=requests.get(url1,headers=header)
-    sdw1=r.content.decode('utf-8')
-    r=requests.get(url2,headers=header)
-    sdw2=r.content.decode('utf-8')
-    
+class ChampionRank:
+    def __init__(self):
+        self.processHTML()
+
+    def __str__(self):
+        return str(self.data)
+
+    def requestData(self):
+        urlBan="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&"
+        urlWin="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&"
+        header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+        r=requests.get(urlBan,headers=header)
+        sdw1=r.content.decode('utf-8')
+        r=requests.get(urlWin,headers=header)
+        sdw2=r.content.decode('utf-8')
+        return sdw1, sdw2
+
+    def processHTML(self):
+        sdw1, sdw2 = self.requestData()
+        soup1 = BeautifulSoup(sdw1, 'html.parser')
+        soup2 = BeautifulSoup(sdw2, 'html.parser')
+        self.data = {'#': ['name','Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        for idx, tr in enumerate(soup1.tbody.find_all('tr')):
+            tds = tr.find_all('td')
+            divs = tds[2].find_all('div')
+            name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+            self.data[name_position] = []
+            self.data[name_position].append(divs[0].string)
+            self.data[name_position].append(divs[1].string.strip().replace('\t', ''))
+            self.data[name_position].append(tds[3].contents[0].string)
+            self.data[name_position].append(tds[4].contents[0].string)
+
+        for idx, tr in enumerate(soup2.tbody.find_all('tr')):
+            tds = tr.find_all('td')
+            divs = tds[2].find_all('div')
+            self.data[name_position].append(tds[3].contents[0].string)
+
+    def saveToCSV(self):
+        with open('./data/ChamRank--{}.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.data.keys()))
+            for i in self.data.keys():
+                csv_writer.writerow(self.data[i])
+
+
 class ChampionStat:
     def __init__(self, type, league, period, mapId, queue):
         self.__type=type
@@ -94,15 +130,12 @@ class ChampionStat:
                     self.data[list(self.data.keys())[5]][i],  
                     self.data[list(self.data.keys())[6]][i]])  
     
-def getTierStat(type, period, mapId, queue):
-    url="https://www.op.gg/statistics/ajax2/tier/type={}&period={}&mapId={}&queue={}".format(type, period, mapId, queue)
-    header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-    r=requests.get(url,headers=header)
-    sdw=r.content.decode('utf-8')
 
+championRank = ChampionRank()
+print(championRank)
+championRank.saveToCSV()
 
+# championStat = ChampionStat('win', 'all', 'month', '1', 'ranked')
+# print(championStat)
+# championStat.saveToCSV()
 
-# getChamRank()
-print(ChampionStat('win', 'all', 'month', '1', 'ranked'))
-ChampionStat('win', 'all', 'month', '1', 'ranked').saveToCSV()
-# getTierStat('kda', 'month', '1', 'ranked')
