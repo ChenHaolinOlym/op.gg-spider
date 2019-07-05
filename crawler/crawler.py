@@ -13,7 +13,7 @@ class ChampionRank:
         self.processHTML()
 
     def __str__(self):
-        return str(self.data)
+        return str(self.Alldata)+'\n'+str(self.Topdata)+'\n'+str(self.Jugdata)+'\n'+str(self.Middata)+'\n'+str(self.ADCdata)+'\n'+str(self.Supdata)
 
     def requestData(self):
         urlBan="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&"
@@ -26,32 +26,175 @@ class ChampionRank:
         return sdw1, sdw2
 
     def processHTML(self):
+        '''process the HTML file using Beautiful Soup
+        '''
         sdw1, sdw2 = self.requestData()
+
         soup1 = BeautifulSoup(sdw1, 'html.parser')
         soup2 = BeautifulSoup(sdw2, 'html.parser')
-        self.data = {'#': ['name','Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
-        for idx, tr in enumerate(soup1.tbody.find_all('tr')):
-            tds = tr.find_all('td')
-            divs = tds[2].find_all('div')
-            name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
-            self.data[name_position] = []
-            self.data[name_position].append(divs[0].string)
-            self.data[name_position].append(divs[1].string.strip().replace('\t', ''))
-            self.data[name_position].append(tds[3].contents[0].string)
-            self.data[name_position].append(tds[4].contents[0].string)
 
-        for idx, tr in enumerate(soup2.tbody.find_all('tr')):
-            tds = tr.find_all('td')
-            divs = tds[2].find_all('div')
-            name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
-            self.data[name_position].append(tds[3].contents[0].string)
+        self.Alldata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        self.Topdata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        self.Jugdata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        self.Middata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        self.ADCdata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
+        self.Supdata = {'#': ['name', 'Position', 'Win Rate', 'Pick Rate', 'Ban Rate']}
 
+        # process for soup1
+        for idx, tbody in enumerate(soup1.find_all('tbody')):
+            if idx == 0:  # All
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Alldata[name_position] = []
+                    self.Alldata[name_position].append(divs[0].string)
+                    self.Alldata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.Alldata[name_position].append(tds[3].contents[0].string)
+                    self.Alldata[name_position].append(tds[4].contents[0].string)
+
+            if idx == 1:  # Top
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Topdata[name_position] = []
+                    self.Topdata[name_position].append(divs[0].string)
+                    self.Topdata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.Topdata[name_position].append(tds[3].contents[0].string)
+                    self.Topdata[name_position].append(tds[4].contents[0].string)
+
+            if idx == 2:  # Jug
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Jugdata[name_position] = []
+                    self.Jugdata[name_position].append(divs[0].string)
+                    self.Jugdata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.Jugdata[name_position].append(tds[3].contents[0].string)
+                    self.Jugdata[name_position].append(tds[4].contents[0].string)
+
+            if idx == 3:  # Mid
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Middata[name_position] = []
+                    self.Middata[name_position].append(divs[0].string)
+                    self.Middata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.Middata[name_position].append(tds[3].contents[0].string)
+                    self.Middata[name_position].append(tds[4].contents[0].string)
+
+            if idx == 4:  # Bot
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.ADCdata[name_position] = []
+                    self.ADCdata[name_position].append(divs[0].string)
+                    self.ADCdata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.ADCdata[name_position].append(tds[3].contents[0].string)
+                    self.ADCdata[name_position].append(tds[4].contents[0].string)
+
+            if idx == 5:  # Sup
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Supdata[name_position] = []
+                    self.Supdata[name_position].append(divs[0].string)
+                    self.Supdata[name_position].append(divs[1].string.strip().replace('\t', ''))
+                    self.Supdata[name_position].append(tds[3].contents[0].string)
+                    self.Supdata[name_position].append(tds[4].contents[0].string)
+
+        # process for soup2
+        for idx, tbody in enumerate(soup2.find_all('tbody')):
+            if idx == 0:  # All
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Alldata[name_position].append(tds[3].contents[0].string)
+
+            if idx == 1:  # Top
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Topdata[name_position].append(tds[3].contents[0].string)
+
+            if idx == 2:  # Jug
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Jugdata[name_position].append(tds[3].contents[0].string)
+
+            if idx == 3:  # Mid
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Middata[name_position].append(tds[3].contents[0].string)
+
+            if idx == 4:  # ADC
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.ADCdata[name_position].append(tds[3].contents[0].string)
+
+            if idx == 5:  # Sup
+                for idx, tr in enumerate(tbody.find_all('tr')):
+                    tds = tr.find_all('td')
+                    divs = tds[2].find_all('div')
+                    name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
+                    self.Supdata[name_position].append(tds[3].contents[0].string)
+                    
     def saveToCSV(self):
-        with open('./data/ChamRank--{}.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        # All
+        with open('./data/ChamRank--{}--All.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'a+', newline='') as f:
             csv_writer = csv.writer(f)
-            csv_writer.writerow((self.data.keys()))
-            for i in self.data.keys():
-                csv_writer.writerow(self.data[i])
+            csv_writer.writerow((self.Alldata.keys()))
+            for i in self.Alldata.keys():
+                csv_writer.writerow(self.Alldata[i])
+                
+        # Top
+        with open('./data/ChamRank--{}--Top.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.Topdata.keys()))
+            for i in self.Topdata.keys():
+                csv_writer.writerow(self.Topdata[i])
+
+        # Jug
+        with open('./data/ChamRank--{}-Jug.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.Jugdata.keys()))
+            for i in self.Jugdata.keys():
+                csv_writer.writerow(self.Jugdata[i])
+
+        # Mid
+        with open('./data/ChamRank--{}--Mid.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.Middata.keys()))
+            for i in self.Middata.keys():
+                csv_writer.writerow(self.Middata[i])
+
+        # ADC
+        with open('./data/ChamRank--{}--ADC.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.ADCdata.keys()))
+            for i in self.ADCdata.keys():
+                csv_writer.writerow(self.ADCdata[i])
+
+        # Sup
+        with open('./data/ChamRank--{}--Sup.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow((self.Supdata.keys()))
+            for i in self.Supdata.keys():
+                csv_writer.writerow(self.Supdata[i])
+
 
 
 class ChampionStat:
