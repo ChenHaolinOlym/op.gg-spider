@@ -43,6 +43,7 @@ class ChampionRank:
         for idx, tr in enumerate(soup2.tbody.find_all('tr')):
             tds = tr.find_all('td')
             divs = tds[2].find_all('div')
+            name_position = str(divs[0].string)+';'+str(divs[1].string.strip().replace('\t', ''))
             self.data[name_position].append(tds[3].contents[0].string)
 
     def saveToCSV(self):
@@ -135,7 +136,7 @@ championRank = ChampionRank()
 print(championRank)
 championRank.saveToCSV()
 
-# championStat = ChampionStat('win', 'all', 'month', '1', 'ranked')
-# print(championStat)
-# championStat.saveToCSV()
+championStat = ChampionStat('win', 'all', 'month', '1', 'ranked')
+print(championStat)
+championStat.saveToCSV()
 
