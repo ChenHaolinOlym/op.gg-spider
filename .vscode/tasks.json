@@ -1,0 +1,19 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "bokeh run",
+            "type": "shell",
+            "command": "bokeh serve --show E:/op.gg-spider/bokeh/bokeh-layout.py",
+            "problemMatcher": []
+        },
+        {
+            "label": "pycodestyle",
+            "type": "shell",
+            "command": "pycodestyle -- E:/python/CSC1002/assignments/assignment2/ass2.py",
+            "problemMatcher": []
+        }
+    ]
+}
