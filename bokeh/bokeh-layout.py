@@ -10,11 +10,15 @@ from functools import partial
 
 
 
-# layout
 
-page = layout(
-    [widgetbox(tabs, width=1000)]       
-)
 
-# display & interaction
-curdoc().add_root(page)
+
+
+# # layout
+
+# page = layout(
+#     [widgetbox(, width=1000)]       
+# )
+
+# # display & interaction
+# curdoc().add_root(page)

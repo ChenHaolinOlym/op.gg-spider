@@ -154,42 +154,42 @@ class ChampionRank:
                     
     def saveToCSV(self):
         # All
-        with open('./data/ChamRank--{}--All.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'a+', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}--All.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'a+', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.Alldata.keys()))
             for i in self.Alldata.keys():
                 csv_writer.writerow(self.Alldata[i])
                 
         # Top
-        with open('./data/ChamRank--{}--Top.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}--Top.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.Topdata.keys()))
             for i in self.Topdata.keys():
                 csv_writer.writerow(self.Topdata[i])
 
         # Jug
-        with open('./data/ChamRank--{}-Jug.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}-Jug.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.Jugdata.keys()))
             for i in self.Jugdata.keys():
                 csv_writer.writerow(self.Jugdata[i])
 
         # Mid
-        with open('./data/ChamRank--{}--Mid.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}--Mid.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.Middata.keys()))
             for i in self.Middata.keys():
                 csv_writer.writerow(self.Middata[i])
 
         # ADC
-        with open('./data/ChamRank--{}--ADC.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}--ADC.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.ADCdata.keys()))
             for i in self.ADCdata.keys():
                 csv_writer.writerow(self.ADCdata[i])
 
         # Sup
-        with open('./data/ChamRank--{}--Sup.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamRank/ChamRank--{}--Sup.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.Supdata.keys()))
             for i in self.Supdata.keys():
@@ -262,7 +262,7 @@ class ChampionStat:
                 self.data[list(self.data.keys())[6]].append(''.join(gold.split(',')))
 
     def saveToCSV(self):
-        with open('./data/ChamStat--{}.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamStat/ChamStat--{}.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.data.keys()))
             for i in range(len(self.data['#'])):
