@@ -8,12 +8,6 @@
             "type": "shell",
             "command": "bokeh serve --show E:/op.gg-spider/bokeh/bokeh-layout.py",
             "problemMatcher": []
-        },
-        {
-            "label": "pycodestyle",
-            "type": "shell",
-            "command": "pycodestyle -- E:/python/CSC1002/assignments/assignment2/ass2.py",
-            "problemMatcher": []
         }
     ]
 }
