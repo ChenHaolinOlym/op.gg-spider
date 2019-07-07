@@ -13,7 +13,7 @@ class ChampionRank:
         self.processHTML()
 
     def __str__(self):
-        self.content()
+        return self.content()
     
     def content(self):
         return str(self.Alldata)+'\n'+str(self.Topdata)+'\n'+str(self.Jugdata)+'\n'+str(self.Middata)+'\n'+str(self.ADCdata)+'\n'+str(self.Supdata)
