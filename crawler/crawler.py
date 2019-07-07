@@ -13,8 +13,11 @@ class ChampionRank:
         self.processHTML()
 
     def __str__(self):
+        self.content()
+    
+    def content(self):
         return str(self.Alldata)+'\n'+str(self.Topdata)+'\n'+str(self.Jugdata)+'\n'+str(self.Middata)+'\n'+str(self.ADCdata)+'\n'+str(self.Supdata)
-
+    
     def requestData(self):
         urlBan="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=winratio&"
         urlWin="https://www.op.gg/champion/ajax/statistics/trendChampionList/type=banratio&"
@@ -208,8 +211,11 @@ class ChampionStat:
         self.processHTML()
 
     def __str__(self):
-        return str(self.data)
+        return self.content()
     
+    def content(self):
+        return str(self.data)
+
     def qCode_to_string(self, type, league, period, mapId, queue):
         typeD = {'win': 'Win rate', 'lose': 'Low win ratio',
             'picked': 'Pick ratio per game', 'banned': 'Ban ratio per game'}
@@ -281,6 +287,9 @@ class Patch:
         self.processHTML()
 
     def __str__(self):
+        return self.content()
+
+    def content(self):
         return self.patch
 
     def requestData(self):
