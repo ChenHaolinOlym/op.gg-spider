@@ -209,7 +209,7 @@ class ChampionStat:
 
     def __str__(self):
         return str(self.data)
-
+    
     def qCode_to_string(self, type, league, period, mapId, queue):
         typeD = {'win': 'Win rate', 'lose': 'Low win ratio',
             'picked': 'Pick ratio per game', 'banned': 'Ban ratio per game'}
@@ -275,6 +275,26 @@ class ChampionStat:
                     self.data[list(self.data.keys())[6]][i]])  
     
 
+
+class Patch:
+    def __init__(self):
+        self.processHTML()
+
+    def __str__(self):
+        return self.patch
+
+    def requestData(self):
+        url="https://www.op.gg/champion/statistics"
+        header={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+        r=requests.get(url,headers=header)
+        sdw=r.content.decode('utf-8')
+        return sdw
+        
+    def processHTML(self):
+        data = self.requestData()
+        idx = data.find('Korea - Version : ')
+        self.patch = data[idx: idx+22]
+
 championRank = ChampionRank()
 print(championRank)
 championRank.saveToCSV()
@@ -283,3 +303,4 @@ championStat = ChampionStat('win', 'all', 'month', '1', 'ranked')
 print(championStat)
 championStat.saveToCSV()
 
+print(Patch())
