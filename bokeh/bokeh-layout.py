@@ -119,6 +119,7 @@ plot = figure(plot_width=1000, plot_height=600,
     x_axis_label='Days', x_axis_type='datetime', y_axis_label='percent of ')
 plot.line('x','y1',  source=source, line_color="red")
 plot.line('x','y2',  source=source, line_color="blue")
+slider = RangeSlider(start=0, end=10, value=(1,9), step=.1, title="Stuff")
 
 
 # callbacks
@@ -150,7 +151,7 @@ layout3 = layout(
 
 layout4 = layout(
     [widgetbox(btnGroupType4), widgetbox(btnGroupPosition2)],
-    [widgetbox(patch, plot, height=500, width=1000)]
+    [widgetbox(slider,patch, plot, height=400, width=1000)],
 )
 
 
@@ -180,10 +181,6 @@ page = layout(
     [widgetbox(tabs)]
 )
 
-# page = layout(
-#     [widgetbox(btnGroupType), widgetbox(btnGroupPosition)],
-#     [widgetbox(patch, plot, height=500, width=1000)],      
-# )
 
 # display & interaction
 curdoc().add_root(page)
