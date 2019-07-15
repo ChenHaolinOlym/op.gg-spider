@@ -21,6 +21,7 @@ champions = {'Aatrox': ['Aatrox', '亚托克斯', '厄萨斯', 'the Darkin Blade
              'Darius': ['Darius', '德莱厄斯', '达瑞斯', 'the Hand of Noxus', '诺克萨斯之手', '诺克萨斯之力', 20],
              'Diana': ['Diana', '戴安娜', '戴安娜', 'Scorn of the Moon', '皎月女神', '轻藐之月', 21],
              'Dr.Mundo': ['Dr.Mundo', '蒙多医生', '蒙多医生', 'the Madman of Zaun', '祖安狂人', '佐恩狂人', 22],
+             'Dr. Mundo': ['Dr.Mundo', '蒙多医生', '蒙多医生', 'the Madman of Zaun', '祖安狂人', '佐恩狂人', 22],
              'Draven': ['Draven', '德莱文', '达瑞文', 'the Glorious Executioner', '荣耀行刑官', '处刑娱乐大师', 23],
              'Ekko': ['Ekko', '艾克', '艾克', 'the Boy Who Shattered Time', '时间刺客', '时空少年', 24],
              'Elise': ['Elise', '伊莉丝', '伊莉丝', 'the Spider Queen', '蜘蛛女皇', '蜘蛛女王', 25],
@@ -47,6 +48,7 @@ champions = {'Aatrox': ['Aatrox', '亚托克斯', '厄萨斯', 'the Darkin Blade
              'Jhin': ['Jhin', '烬', '烬', 'the Virtuoso', '戏命师', '炫技大师', 46],
              'Jinx': ['Jinx', '金克斯', '吉茵珂丝', 'the Loose Cannon', '暴走萝莉', '暴走重炮', 47],
              "Kai'sa": ["Kai'sa", '卡莎', '凱莎', 'Daughter of the Void', '虚空之女', '虛空之女', 48],
+             "Kai'Sa": ["Kai'sa", '卡莎', '凱莎', 'Daughter of the Void', '虚空之女', '虛空之女', 48],
              'Kalista': ['Kalista', '卡莉斯塔', '克黎思妲', 'the Spear of Vengeance', '复仇之矛', '复仇之矛', 49],
              'Karma': ['Karma', '卡尔玛', '卡玛', 'the Enlightened One', '天启者', '魂之启者',50],
              'Karthus': ['Karthus', '卡尔萨斯', '卡尔瑟斯', 'the Deathsinger', '死亡颂唱者', '死亡颂唱者', 51],
@@ -79,6 +81,7 @@ champions = {'Aatrox': ['Aatrox', '亚托克斯', '厄萨斯', 'the Darkin Blade
              'Nidalee': ['Nidalee', '奈德丽', '奈德丽', 'the Bestial Huntress', '狂野女猎手', '狂野猎手', 78],
              'Nocturne': ['Nocturne', '魔腾', '夜曲', 'the Eternal Nightmare', '永恒梦魇', '永恒梦魇', 79],
              'Nunu': ['Nunu', '努努', '努努', 'the Yeti Rider', '雪人骑士', '雪人骑士', 80],
+             'Nunu & Willump': ['Nunu', '努努', '努努', 'the Yeti Rider', '雪人骑士', '雪人骑士', 80],
              'Olaf': ['Olaf', '奥拉夫', '奥拉夫', 'the Berserker', '狂战士', '狂战士', 81],
              'Orianna': ['Orianna', '奥莉安娜', '奥莉安娜', 'the Lady of Clockwork', '发条魔灵', '发条少女', 82],
              'Ornn': ['Ornn', '奥恩', '鄂爾', 'the Fire Below The Mountain', '山隐之焰', '爐心山神', 83],
@@ -142,7 +145,8 @@ champions = {'Aatrox': ['Aatrox', '亚托克斯', '厄萨斯', 'the Darkin Blade
              'Ziggs': ['Ziggs', '吉格斯', '希格斯', 'the Hexplosives Expert', '爆破鬼才', '魔法爆破专家', 141],
              'Zilean': ['Zilean', '基兰', '极灵', 'the Chronokeeper', '时光守护者', '时光守护者', 142],
              'Zoe': ['Zoe', '佐伊', '柔依', 'the Aspect of Twilight', '暮光星灵', '暮光星靈', 143],
-             'Zyra': ['Zyra', '婕拉', '枷萝', 'Rise of the Thorns', '荆棘之兴', '荆棘漫游者', 144]}
+             'Zyra': ['Zyra', '婕拉', '枷萝', 'Rise of the Thorns', '荆棘之兴', '荆棘漫游者', 144],
+             'Neeko': ['Neeko', '妮蔻', '妮可', 'the Curious Chameleon', '万花通灵', '好奇變色龍', 145]}
 
 # from nga
 champions_reverse = {'Aatrox': 'Aatrox',

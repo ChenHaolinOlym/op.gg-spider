@@ -7,6 +7,8 @@ import json
 from bs4 import BeautifulSoup
 from datetime import datetime
 import csv
+import sqlite3
+from champions import champions
 
 class ChampionRank:
     def __init__(self):
@@ -198,6 +200,104 @@ class ChampionRank:
             for i in self.Supdata.keys():
                 csv_writer.writerow(self.Supdata[i])
 
+    def saveTosqLite(self):
+        conn = sqlite3.connect('data/data.db')
+        print('Database connect successfully')
+        cursor = conn.cursor()
+
+        cursor.execute(f'''
+            CREATE TABLE ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} (
+                champion TEXT,
+                position TEXT,
+                win_rate TEXT,
+                pick_rate TEXT,
+                ban_rate TEXT,
+                cham_id INT
+            )
+        ''')
+        print('Table create success')
+        for i in self.Alldata.keys():
+            if self.Alldata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.Alldata[i][0]}",
+                        'All',
+                        "{self.Alldata[i][2]}",
+                        "{self.Alldata[i][3]}",
+                        "{self.Alldata[i][4]}",
+                        {champions[self.Alldata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        for i in self.Topdata.keys():
+            if self.Topdata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.Topdata[i][0]}",
+                        'Top',
+                        "{self.Topdata[i][2]}",
+                        "{self.Topdata[i][3]}",
+                        "{self.Topdata[i][4]}",
+                        {champions[self.Topdata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        for i in self.Jugdata.keys():
+            if self.Jugdata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.Jugdata[i][0]}",
+                        'Jug',
+                        "{self.Jugdata[i][2]}",
+                        "{self.Jugdata[i][3]}",
+                        "{self.Jugdata[i][4]}",
+                        {champions[self.Jugdata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        for i in self.Middata.keys():
+            if self.Middata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.Middata[i][0]}",
+                        'Mid',
+                        "{self.Middata[i][2]}",
+                        "{self.Middata[i][3]}",
+                        "{self.Middata[i][4]}",
+                        {champions[self.Middata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        for i in self.ADCdata.keys():
+            if self.ADCdata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.ADCdata[i][0]}",
+                        'ADC',
+                        "{self.ADCdata[i][2]}",
+                        "{self.ADCdata[i][3]}",
+                        "{self.ADCdata[i][4]}",
+                        {champions[self.ADCdata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        for i in self.Supdata.keys():
+            if self.Supdata[i][0] != 'name':
+                cursor.execute(f'''
+                    INSERT INTO ChamRank{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                        "{self.Supdata[i][0]}",
+                        'Sup',
+                        "{self.Supdata[i][2]}",
+                        "{self.Supdata[i][3]}",
+                        "{self.Supdata[i][4]}",
+                        {champions[self.Supdata[i][0]][-1]}
+                    )
+                ''')
+                conn.commit()
+        conn.close()
+        print('Save to database success')
+
+
 
 
 class ChampionStat:
@@ -268,7 +368,7 @@ class ChampionStat:
                 self.data[list(self.data.keys())[6]].append(''.join(gold.split(',')))
 
     def saveToCSV(self):
-        with open('./data/ChamStat/ChamStat--{}.csv'.format(datetime.now().strftime('%Y-%m-%d %H')), 'w', newline='') as f:
+        with open('./data/ChamStat/ChamStat--{}.csv'.format(''.join(datetime.now().strftime('%Y-%m-%d').split('-'))), 'w', newline='') as f:
             csv_writer = csv.writer(f)
             csv_writer.writerow((self.data.keys()))
             for i in range(len(self.data['#'])):
@@ -279,7 +379,40 @@ class ChampionStat:
                     self.data[list(self.data.keys())[4]][i],
                     self.data[list(self.data.keys())[5]][i],  
                     self.data[list(self.data.keys())[6]][i]])  
-    
+
+    def saveTosqLite(self):
+        conn = sqlite3.connect('data/data.db')
+        print('Database connect successfully')
+        cursor = conn.cursor()
+        cursor.execute(f'''
+            CREATE TABLE ChamStat{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} (
+                champion TEXT,
+                win_rate TEXT,
+                games_played INT,
+                KDA TEXT,
+                CS REAL,
+                gold INT,
+                cham_id INT
+            )
+        ''')
+        print('Table create success')
+        for i in range(len(self.data['#'])):
+            cursor.execute(f'''
+                INSERT INTO ChamStat{''.join(datetime.now().strftime('%Y-%m-%d').split('-'))} VALUES (
+                    "{self.data[list(self.data.keys())[1]][i]}",
+                    "{self.data[list(self.data.keys())[2]][i]}",
+                    {self.data[list(self.data.keys())[3]][i]},
+                    "{self.data[list(self.data.keys())[4]][i]}",
+                    {self.data[list(self.data.keys())[5]][i]},
+                    {self.data[list(self.data.keys())[6]][i]},
+                    {champions[self.data[list(self.data.keys())[1]][i]][-1]}
+                )
+            ''')
+        conn.commit()
+        conn.close()
+        print('Save to database success')
+
+
 
 
 class Patch:
@@ -304,12 +437,33 @@ class Patch:
         idx = data.find('Korea - Version : ')
         self.patch = data[idx: idx+22]
 
+    def saveTosqLite(self):
+        conn = sqlite3.connect('data/data.db')
+        print('Database connect successfully')
+        cursor = conn.cursor()
+        version = self.patch.split('.')
+        cursor.execute(f'''
+            INSERT INTO patch VALUES (
+                {version[0][-2]+version[0][-1]},
+                {version[1]},
+                {''.join(datetime.now().strftime('%Y-%m-%d').split('-'))}
+            )
+        ''')
+        print('Save to database success')
+        conn.commit()
+
+
+print(Patch())
+Patch().saveTosqLite()
+
 championRank = ChampionRank()
 print(championRank)
 championRank.saveToCSV()
+championRank.saveTosqLite()
 
 championStat = ChampionStat('win', 'all', 'month', '1', 'ranked')
 print(championStat)
 championStat.saveToCSV()
+championStat.saveTosqLite()
 
 print(Patch())
